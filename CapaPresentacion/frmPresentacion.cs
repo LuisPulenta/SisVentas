@@ -2,19 +2,18 @@
 using System;
 using System.Windows.Forms;
 
-
 namespace CapaPresentacion
 {
-    public partial class frmCategoria : Form
+    public partial class frmPresentacion : Form
     {
         private bool IsNuevo = false;
         private bool IsEditar = false;
-        
-        public frmCategoria()
+
+        public frmPresentacion()
         {
             InitializeComponent();
-            ttMensaje.SetToolTip(txtNombre, "Ingrese el Nombre de la Categoría");
-            ttMensaje.SetToolTip(txtDescripcion, "Ingrese una Descripción de la Categoría");
+            ttMensaje.SetToolTip(txtNombre, "Ingrese el Nombre de la Presentaciòn");
+            ttMensaje.SetToolTip(txtDescripcion, "Ingrese una Descripción de la Presentaciòn");
         }
 
         //Mostrar Mensaje de Confirmación
@@ -34,7 +33,7 @@ namespace CapaPresentacion
         {
             txtNombre.Text = string.Empty;
             txtDescripcion.Text = string.Empty;
-            txtIdCategoria.Text = string.Empty;
+            txtIdPresentacion.Text = string.Empty;
         }
 
         //Habilitar controles del formulario
@@ -42,13 +41,13 @@ namespace CapaPresentacion
         {
             txtNombre.ReadOnly = !valor;
             txtDescripcion.ReadOnly = !valor;
-            txtIdCategoria.ReadOnly = !valor;
+            txtIdPresentacion.ReadOnly = !valor;
         }
 
         //Habilitar botones del formulario
         private void Botones()
         {
-            if(IsNuevo || IsEditar)
+            if (IsNuevo || IsEditar)
             {
                 Habilitar(true);
                 btnNuevo.Enabled = false;
@@ -76,7 +75,7 @@ namespace CapaPresentacion
         //Método Mostrar
         private void Mostrar()
         {
-            dataListado.DataSource = NCategoria.Mostrar();
+            dataListado.DataSource = NPresentacion.Mostrar();
             OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
@@ -84,7 +83,7 @@ namespace CapaPresentacion
         //Método Buscar
         private void BuscarNombre()
         {
-            dataListado.DataSource = NCategoria.BuscarNombre(txtBuscar.Text);
+            dataListado.DataSource = NPresentacion.BuscarNombre(txtBuscar.Text);
             OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
@@ -100,7 +99,7 @@ namespace CapaPresentacion
             dataListado.AutoResizeColumns();
         }
 
-        private void frmCategoria_Load(object sender, EventArgs e)
+        private void frmPresentacion_Load(object sender, EventArgs e)
         {
             Mostrar();
             PersonalizarGrilla();
@@ -124,16 +123,16 @@ namespace CapaPresentacion
             {
                 DialogResult Opcion;
                 Opcion = MessageBox.Show("Realmente desea eliminar los Registros", "Sistema de Ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if(Opcion==DialogResult.OK)
+                if (Opcion == DialogResult.OK)
                 {
                     string Codigo;
                     string Rpta = "";
-                    foreach(DataGridViewRow row in dataListado.Rows)
+                    foreach (DataGridViewRow row in dataListado.Rows)
                     {
-                        if(Convert.ToBoolean(row.Cells[0].Value))
+                        if (Convert.ToBoolean(row.Cells[0].Value))
                         {
                             Codigo = Convert.ToString(row.Cells[1].Value);
-                            Rpta = NCategoria.Eliminar(Convert.ToInt32(Codigo));
+                            Rpta = NPresentacion.Eliminar(Convert.ToInt32(Codigo));
 
                             if (Rpta.Equals("OK"))
                             {
@@ -173,30 +172,30 @@ namespace CapaPresentacion
             {
                 errorIcono.Clear();
                 string rpta = "";
-                if(txtNombre.Text==string.Empty)
+                if (txtNombre.Text == string.Empty)
                 {
                     MensajeError("Debe ingresar un Nombre");
                     errorIcono.SetError(txtNombre, "Debe ingresar un Nombre");
                     return;
                 }
 
-                if (txtNombre.Text.Length>50)
+                if (txtNombre.Text.Length > 50)
                 {
                     MensajeError("El Nombre no puede tener más de 50 caracteres");
                     errorIcono.SetError(txtNombre, "El Nombre no puede tener más de 50 caracteres");
                     return;
                 }
-                if(IsNuevo)
+                if (IsNuevo)
                 {
-                    rpta = NCategoria.Insertar(txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text);
+                    rpta = NPresentacion.Insertar(txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text);
                 }
                 else
                 {
-                    rpta = NCategoria.Editar(Convert.ToInt32(txtIdCategoria.Text),txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text);
+                    rpta = NPresentacion.Editar(Convert.ToInt32(txtIdPresentacion.Text), txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text);
                 }
-                if(rpta.Equals("OK"))
+                if (rpta.Equals("OK"))
                 {
-                    if(IsNuevo)
+                    if (IsNuevo)
                     {
                         MensajeOk("El Registro se guardó con éxito!");
                     }
@@ -220,13 +219,13 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message+ex.StackTrace);
+                MessageBox.Show(ex.Message + ex.StackTrace);
             }
         }
 
         private void dataListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtIdCategoria.Text =Convert.ToString(dataListado.CurrentRow.Cells["idcategoria"].Value);
+            txtIdPresentacion.Text = Convert.ToString(dataListado.CurrentRow.Cells["idpresentacion"].Value);
             txtNombre.Text = Convert.ToString(dataListado.CurrentRow.Cells["nombre"].Value);
             txtDescripcion.Text = Convert.ToString(dataListado.CurrentRow.Cells["descripcion"].Value);
             tabControl1.SelectedIndex = 1;
@@ -268,7 +267,7 @@ namespace CapaPresentacion
 
         private void chkEliminar_CheckedChanged(object sender, EventArgs e)
         {
-            if(chkEliminar.Checked)
+            if (chkEliminar.Checked)
             {
                 dataListado.Columns[0].Visible = true;
             }
@@ -280,7 +279,7 @@ namespace CapaPresentacion
 
         private void dataListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex==dataListado.Columns["Eliminar"].Index)
+            if (e.ColumnIndex == dataListado.Columns["Eliminar"].Index)
             {
                 DataGridViewCheckBoxCell ChkEliminar = (DataGridViewCheckBoxCell)dataListado.Rows[e.RowIndex].Cells["Eliminar"];
                 ChkEliminar.Value = !Convert.ToBoolean(ChkEliminar.Value);
