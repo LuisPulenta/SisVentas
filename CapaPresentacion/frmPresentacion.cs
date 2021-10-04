@@ -136,7 +136,7 @@ namespace CapaPresentacion
 
                             if (Rpta.Equals("OK"))
                             {
-                                MensajeOk("Se elminó el Registro con éxito!");
+                                MensajeOk("Se eliminó el Registro con éxito!");
                             }
                             else
                             {
