@@ -203,7 +203,7 @@ namespace CapaDatos
                 SqlCmd.Parameters.Add(ParTipoDocumento);
 
                 SqlParameter ParNumDocumento = new SqlParameter();
-                ParNumDocumento.ParameterName = "@numdo_cumento";
+                ParNumDocumento.ParameterName = "@num_documento";
                 ParNumDocumento.SqlDbType = SqlDbType.VarChar;
                 ParNumDocumento.Size = 11;
                 ParNumDocumento.Value = Proveedor.Num_documento;
@@ -334,7 +334,7 @@ namespace CapaDatos
                 //Establecer el Comando
                 SqlCommand SqlCmd = new SqlCommand();
                 SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "spproveeedor_buscar_razon_social";
+                SqlCmd.CommandText = "spproveedor_buscar_razon_social";
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParTextoBuscar = new SqlParameter();
@@ -373,7 +373,7 @@ namespace CapaDatos
                 //Establecer el Comando
                 SqlCommand SqlCmd = new SqlCommand();
                 SqlCmd.Connection = SqlCon;
-                SqlCmd.CommandText = "spproveeedor_buscar_num_documento";
+                SqlCmd.CommandText = "spproveedor_buscar_num_documento";
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParTextoBuscar = new SqlParameter();
