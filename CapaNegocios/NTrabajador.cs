@@ -100,5 +100,14 @@ namespace CapaNegocios
             Obj.TextoBuscar = textobuscar;
             return Obj.BuscarNum_Documento(Obj);
         }
+
+        //Método Login
+        public static DataTable Login(string usuario, string password)
+        {
+            DTrabajador Obj = new DTrabajador();
+            Obj.Usuario = usuario;
+            Obj.Password = password;
+            return Obj.Login(Obj);
+        }
     }
 }
