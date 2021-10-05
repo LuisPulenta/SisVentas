@@ -69,7 +69,6 @@ namespace CapaPresentacion
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
@@ -394,7 +393,6 @@ namespace CapaPresentacion
             this.tabPage1.Controls.Add(this.btnEliminar);
             this.tabPage1.Controls.Add(this.btnBuscar);
             this.tabPage1.Controls.Add(this.txtBuscar);
-            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -408,7 +406,7 @@ namespace CapaPresentacion
             this.cbBuscar.Items.AddRange(new object[] {
             "Apellidos",
             "Documento"});
-            this.cbBuscar.Location = new System.Drawing.Point(29, 21);
+            this.cbBuscar.Location = new System.Drawing.Point(29, 20);
             this.cbBuscar.Name = "cbBuscar";
             this.cbBuscar.Size = new System.Drawing.Size(155, 24);
             this.cbBuscar.TabIndex = 10;
@@ -504,20 +502,11 @@ namespace CapaPresentacion
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(267, 21);
+            this.txtBuscar.Location = new System.Drawing.Point(190, 21);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(251, 22);
             this.txtBuscar.TabIndex = 3;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(199, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre:";
             // 
             // pictureBox1
             // 
@@ -614,7 +603,6 @@ namespace CapaPresentacion
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider errorIcono;
