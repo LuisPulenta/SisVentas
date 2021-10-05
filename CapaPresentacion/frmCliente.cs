@@ -4,22 +4,23 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class frmProveedor : Form
+    public partial class frmCliente : Form
     {
         private bool IsNuevo = false;
         private bool IsEditar = false;
 
-        public frmProveedor()
+        public frmCliente()
         {
             InitializeComponent();
-            ttMensaje.SetToolTip(txtRazonSocial, "Ingrese la Razón Social del Proveedor");
-            ttMensaje.SetToolTip(cbSectorComercial, "Seleccione el Sector Comercial del Proveedor");
+            ttMensaje.SetToolTip(txtNombre, "Ingrese Nombre del Cliente");
+            ttMensaje.SetToolTip(txtApellidos, "Ingrese Apellidos del Cliente");
+            ttMensaje.SetToolTip(cbSexo, "Seleccione el Sexo del Cliente");
+            ttMensaje.SetToolTip(dtFechaNac, "Seleccione la Fecha de Nacimiento del Cliente");
             ttMensaje.SetToolTip(cbTipoDocumento, "Seleccione el Tipo de Documento");
             ttMensaje.SetToolTip(txtNumDocumento, "Ingrese el N° de Documento");
             ttMensaje.SetToolTip(txtDireccion, "Ingrese la Dirección");
             ttMensaje.SetToolTip(txtTelefono, "Ingrese el Teléfono");
             ttMensaje.SetToolTip(txtEmail, "Ingrese el Email");
-            ttMensaje.SetToolTip(txtUrl, "Ingrese la URL");
         }
 
         //Mostrar Mensaje de Confirmación
@@ -37,28 +38,30 @@ namespace CapaPresentacion
         //Limpiar controles del formulario
         private void Limpiar()
         {
-            txtIdProveedor.Text = string.Empty;
-            txtRazonSocial.Text = string.Empty;
-            cbSectorComercial.SelectedIndex = -1;
+            txtIdCliente.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtApellidos.Text = string.Empty;
+            cbSexo.SelectedIndex = -1;
+            dtFechaNac.Value = DateTime.Today;
             cbTipoDocumento.SelectedIndex = -1;
             txtNumDocumento.Text = string.Empty;
             txtDireccion.Text = string.Empty;
             txtTelefono.Text = string.Empty;
             txtEmail.Text = string.Empty;
-            txtUrl.Text = string.Empty;
         }
 
         //Habilitar controles del formulario
         private void Habilitar(bool valor)
         {
-            txtRazonSocial.ReadOnly = !valor;
-            cbSectorComercial.Enabled = valor;
+            txtNombre.ReadOnly = !valor;
+            txtApellidos.ReadOnly = !valor;
+            cbSexo.Enabled = valor;
+            dtFechaNac.Enabled = valor;
             cbTipoDocumento.Enabled = valor;
             txtNumDocumento.ReadOnly = !valor;
             txtDireccion.ReadOnly = !valor;
             txtTelefono.ReadOnly = !valor;
             txtEmail.ReadOnly = !valor;
-            txtUrl.ReadOnly = !valor;
         }
 
         //Habilitar botones del formulario
@@ -92,15 +95,15 @@ namespace CapaPresentacion
         //Método Mostrar
         private void Mostrar()
         {
-            dataListado.DataSource = NProveedor.Mostrar();
+            dataListado.DataSource = NCliente.Mostrar();
             OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
-        //Método BuscarRazonSocial
-        private void BuscarRazon_Social()
+        //Método BuscarApellido
+        private void BuscarApellidos()
         {
-            dataListado.DataSource = NProveedor.Buscar_Razon_Social(txtBuscar.Text);
+            dataListado.DataSource = NCliente.Buscar_Apellido(txtBuscar.Text);
             OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
@@ -108,18 +111,24 @@ namespace CapaPresentacion
         //Método BuscarNumDocumento
         private void BuscarNum_Documento()
         {
-            dataListado.DataSource = NProveedor.BuscarNum_Documento(txtBuscar.Text);
+            dataListado.DataSource = NCliente.BuscarNum_Documento(txtBuscar.Text);
             OcultarColumnas();
             lblTotal.Text = "Total de Registros: " + Convert.ToString(dataListado.Rows.Count);
         }
 
         private void PersonalizarGrilla()
         {
-            dataListado.Columns["razon_social"].HeaderText = "Razón Social";
-            dataListado.Columns["razon_social"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataListado.Columns["nombre"].HeaderText = "Nombre";
+            dataListado.Columns["nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            dataListado.Columns["sector_comercial"].HeaderText = "Sector Comercial";
-            dataListado.Columns["sector_comercial"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataListado.Columns["apellidos"].HeaderText = "Apellidos";
+            dataListado.Columns["apellidos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["sexo"].HeaderText = "Sexo";
+            dataListado.Columns["sexo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["fecha_nacimiento"].HeaderText = "Fec. Nac.";
+            dataListado.Columns["fecha_nacimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             dataListado.Columns["tipo_documento"].HeaderText = "Tipo Documento";
             dataListado.Columns["tipo_documento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -136,13 +145,10 @@ namespace CapaPresentacion
             dataListado.Columns["email"].HeaderText = "Email";
             dataListado.Columns["email"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            dataListado.Columns["url"].HeaderText = "URL";
-            dataListado.Columns["url"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
             dataListado.AutoResizeColumns();
         }
 
-        private void frmProveedor_Load(object sender, EventArgs e)
+        private void frmCliente_Load(object sender, EventArgs e)
         {
             Mostrar();
             PersonalizarGrilla();
@@ -152,9 +158,9 @@ namespace CapaPresentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if(cbBuscar.Text.Equals("Razón Social"))
+            if (cbBuscar.Text.Equals("Apellidos"))
             {
-                BuscarRazon_Social();
+                BuscarApellidos();
             }
             else if (cbBuscar.Text.Equals("Documento"))
             {
@@ -164,9 +170,9 @@ namespace CapaPresentacion
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            if (cbBuscar.Text.Equals("Razón Social"))
+            if (cbBuscar.Text.Equals("Apellidos"))
             {
-                BuscarRazon_Social();
+                BuscarApellidos();
             }
             else if (cbBuscar.Text.Equals("Documento"))
             {
@@ -189,7 +195,7 @@ namespace CapaPresentacion
                         if (Convert.ToBoolean(row.Cells[0].Value))
                         {
                             Codigo = Convert.ToString(row.Cells[1].Value);
-                            Rpta = NProveedor.Eliminar(Convert.ToInt32(Codigo));
+                            Rpta = NCliente.Eliminar(Convert.ToInt32(Codigo));
 
                             if (Rpta.Equals("OK"))
                             {
@@ -220,7 +226,7 @@ namespace CapaPresentacion
             Botones();
             Limpiar();
             Habilitar(true);
-            txtRazonSocial.Focus();
+            txtNombre.Focus();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -229,17 +235,24 @@ namespace CapaPresentacion
             {
                 errorIcono.Clear();
                 string rpta = "";
-                if (txtRazonSocial.Text == string.Empty)
+                if (txtNombre.Text == string.Empty)
                 {
-                    MensajeError("Debe ingresar una Razón Social");
-                    errorIcono.SetError(txtRazonSocial, "Debe ingresar una Razón Social");
+                    MensajeError("Debe ingresar un Nombre de Cliente");
+                    errorIcono.SetError(txtNombre, "Debe ingresar un Nombre de Cliente");
                     return;
                 }
 
-                if (cbSectorComercial.SelectedIndex==-1)
+                if (txtApellidos.Text == string.Empty)
                 {
-                    MensajeError("Seleccione un Sector Comercial");
-                    errorIcono.SetError(cbSectorComercial, "Seleccione un Sector Comercial");
+                    MensajeError("Debe ingresar un Apellido de Cliente");
+                    errorIcono.SetError(txtApellidos, "Debe ingresar un Apellido de Cliente");
+                    return;
+                }
+
+                if (cbSexo.SelectedIndex == -1)
+                {
+                    MensajeError("Seleccione un Sexo");
+                    errorIcono.SetError(cbSexo, "Seleccione un Sexo");
                     return;
                 }
 
@@ -259,28 +272,30 @@ namespace CapaPresentacion
 
                 if (IsNuevo)
                 {
-                    rpta = NProveedor.Insertar(
-                        txtRazonSocial.Text.Trim().ToUpper(),
-                        cbSectorComercial.Text,
+                    rpta = NCliente.Insertar(
+                        txtNombre.Text.Trim().ToUpper(),
+                        txtApellidos.Text.Trim().ToUpper(),
+                        cbSexo.Text,
+                        dtFechaNac.Value,
                         cbTipoDocumento.Text,
                         txtNumDocumento.Text,
                         txtDireccion.Text,
                         txtTelefono.Text,
-                        txtEmail.Text,
-                        txtUrl.Text);
+                        txtEmail.Text);
                 }
                 else
                 {
-                    rpta = NProveedor.Editar(
-                        Convert.ToInt32(txtIdProveedor.Text),
-                        txtRazonSocial.Text.Trim().ToUpper(),
-                        cbSectorComercial.Text,
+                    rpta = NCliente.Editar(
+                        Convert.ToInt32(txtIdCliente.Text),
+                        txtNombre.Text.Trim().ToUpper(),
+                        txtApellidos.Text.Trim().ToUpper(),
+                        cbSexo.Text,
+                        dtFechaNac.Value,
                         cbTipoDocumento.Text,
                         txtNumDocumento.Text,
                         txtDireccion.Text,
                         txtTelefono.Text,
-                        txtEmail.Text,
-                        txtUrl.Text);
+                        txtEmail.Text);
                 }
                 if (rpta.Equals("OK"))
                 {
@@ -312,40 +327,48 @@ namespace CapaPresentacion
             }
         }
 
-        private void dataListado_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtIdProveedor.Text = Convert.ToString(dataListado.CurrentRow.Cells["idproveedor"].Value);
-            txtRazonSocial.Text = Convert.ToString(dataListado.CurrentRow.Cells["razon_social"].Value);
-            cbSectorComercial.Text = Convert.ToString(dataListado.CurrentRow.Cells["sector_comercial"].Value);
+            txtIdCliente.Text = Convert.ToString(dataListado.CurrentRow.Cells["idcliente"].Value);
+            txtNombre.Text = Convert.ToString(dataListado.CurrentRow.Cells["nombre"].Value);
+            txtApellidos.Text = Convert.ToString(dataListado.CurrentRow.Cells["apellidos"].Value);
+            cbSexo.Text = Convert.ToString(dataListado.CurrentRow.Cells["sexo"].Value);
+            dtFechaNac.Value = Convert.ToDateTime(dataListado.CurrentRow.Cells["fecha_nacimiento"].Value);
             cbTipoDocumento.Text = Convert.ToString(dataListado.CurrentRow.Cells["tipo_documento"].Value);
             txtNumDocumento.Text = Convert.ToString(dataListado.CurrentRow.Cells["num_documento"].Value);
             txtDireccion.Text = Convert.ToString(dataListado.CurrentRow.Cells["direccion"].Value);
             txtTelefono.Text = Convert.ToString(dataListado.CurrentRow.Cells["telefono"].Value);
             txtEmail.Text = Convert.ToString(dataListado.CurrentRow.Cells["email"].Value);
-            txtUrl.Text = Convert.ToString(dataListado.CurrentRow.Cells["url"].Value);
             tabControl1.SelectedIndex = 1;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
             errorIcono.Clear();
-            if (txtRazonSocial.Text == string.Empty)
+            if (txtNombre.Text == string.Empty)
             {
                 MensajeError("Debe seleccionar el Registro a Modificar");
-                errorIcono.SetError(txtRazonSocial, "Debe seleccionar el Registro a Modificar");
+                errorIcono.SetError(txtNombre, "Debe seleccionar el Registro a Modificar");
                 return;
             }
 
-            if (cbSectorComercial.SelectedIndex == -1)
+            if (txtApellidos.Text == string.Empty)
             {
-                MensajeError("Seleccione un Sector Comercial");
-                errorIcono.SetError(cbSectorComercial, "Seleccione un Sector Comercial");
+                MensajeError("Debe ingresar un Apellido de Cliente");
+                errorIcono.SetError(txtNombre, "Debe ingresar un Apellido de Cliente");
+                return;
+            }
+
+            if (cbSexo.SelectedIndex == -1)
+            {
+                MensajeError("Seleccione un Sexo");
+                errorIcono.SetError(cbSexo, "Seleccione un Sexo");
                 return;
             }
 
             if (cbTipoDocumento.SelectedIndex == -1)
             {
-                MensajeError("Seleccione un Tipo de Documentol");
+                MensajeError("Seleccione un Tipo de Documento");
                 errorIcono.SetError(cbTipoDocumento, "Seleccione un Tipo de Documento");
                 return;
             }
@@ -360,7 +383,7 @@ namespace CapaPresentacion
             IsEditar = true;
             Botones();
             Habilitar(true);
-            txtRazonSocial.Focus();
+            txtNombre.Focus();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
