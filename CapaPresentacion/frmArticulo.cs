@@ -41,7 +41,6 @@ namespace CapaPresentacion
             txtIdCategoria.Visible = false;
             txtCategoria.ReadOnly = true;
             LlenarComboPresentacion();
-            _Instancia = this;
         }
 
         //Mostrar Mensaje de Confirmación
@@ -177,10 +176,12 @@ namespace CapaPresentacion
 
         private void frmArticulo_Load(object sender, EventArgs e)
         {
+            _Instancia = this;
             Mostrar();
             PersonalizarGrilla();
             Habilitar(false);
             Botones();
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -417,6 +418,11 @@ namespace CapaPresentacion
         {
             frmVistaCategoria_Articulo form = new frmVistaCategoria_Articulo();
             form.ShowDialog();
+        }
+
+        private void frmArticulo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _Instancia = null;
         }
     }
 }

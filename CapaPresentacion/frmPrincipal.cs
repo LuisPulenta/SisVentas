@@ -226,5 +226,23 @@ namespace CapaPresentacion
         {
             clientesToolStripMenuItem_Click(sender, e);
         }
+
+        private void ingresosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmIngreso frm = frmIngreso.GetInstancia();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.Idtrabajador = Convert.ToInt32(Idtrabajador);
+        }
+
+        private void tsCompras_Click(object sender, EventArgs e)
+        {
+            ingresosToolStripMenuItem_Click(sender, e);
+        }
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            salirToolStripMenuItem_Click(sender, e);
+        }
     }
 }

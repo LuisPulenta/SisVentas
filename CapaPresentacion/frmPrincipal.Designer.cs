@@ -114,6 +114,7 @@ namespace CapaPresentacion
             this.tsCompras.Name = "tsCompras";
             this.tsCompras.Size = new System.Drawing.Size(36, 36);
             this.tsCompras.Text = "Compras";
+            this.tsCompras.Click += new System.EventHandler(this.tsCompras_Click);
             // 
             // tsVentas
             // 
@@ -372,7 +373,7 @@ namespace CapaPresentacion
             this.salirToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("salirToolStripMenuItem.Image")));
             this.salirToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(125, 30);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(228, 30);
             this.salirToolStripMenuItem.Text = "&Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -433,6 +434,7 @@ namespace CapaPresentacion
             this.ingresosToolStripMenuItem.Name = "ingresosToolStripMenuItem";
             this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(186, 38);
             this.ingresosToolStripMenuItem.Text = "&Ingresos";
+            this.ingresosToolStripMenuItem.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click);
             // 
             // proveedoresToolStripMenuItem
             // 
@@ -540,6 +542,7 @@ namespace CapaPresentacion
             this.Name = "frmPrincipal";
             this.Text = "---Sistema de Ventas---";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
