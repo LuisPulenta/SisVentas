@@ -27,7 +27,7 @@ namespace CapaNegocios
                 detalle.Precio_compra = Convert.ToDecimal(row["precio_compra"].ToString());
                 detalle.Precio_venta = Convert.ToDecimal(row["precio_venta"].ToString());
                 detalle.Stock_inicial = Convert.ToInt32(row["stock_inicial"].ToString());
-                detalle.Stock_actual = Convert.ToInt32(row["stock_actual"].ToString());
+                detalle.Stock_actual = Convert.ToInt32(row["stock_inicial"].ToString());
                 detalle.Fecha_produccion = Convert.ToDateTime(row["fecha_produccion"].ToString());
                 detalle.Fecha_vencimiento = Convert.ToDateTime(row["fecha_vencimiento"].ToString());
                 detalles.Add(detalle);
@@ -56,8 +56,8 @@ namespace CapaNegocios
             return Obj.BuscarFecha(textobuscar, textobuscar2);
         }
 
-        //Método BuscarDetalle
-        public static DataTable BuscarDetalle(string textobuscar)
+        //Método MostrarDetalle
+        public static DataTable MostrarDetalle(string textobuscar)
         {
             DIngreso Obj = new DIngreso();
             return Obj.MostrarDetalle(textobuscar);

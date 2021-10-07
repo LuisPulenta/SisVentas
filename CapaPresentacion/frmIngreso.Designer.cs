@@ -30,7 +30,7 @@ namespace CapaPresentacion
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngreso));
             this.errorIcono = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -39,6 +39,7 @@ namespace CapaPresentacion
             this.dtFecha1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dataListado = new System.Windows.Forms.DataGridView();
+            this.Anular = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblTotal = new System.Windows.Forms.Label();
             this.chkAnular = new System.Windows.Forms.CheckBox();
             this.btnImprimir = new System.Windows.Forms.Button();
@@ -88,7 +89,6 @@ namespace CapaPresentacion
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
-            this.Anular = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListado)).BeginInit();
@@ -163,8 +163,8 @@ namespace CapaPresentacion
             this.dataListado.AllowUserToAddRows = false;
             this.dataListado.AllowUserToDeleteRows = false;
             this.dataListado.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataListado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataListado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Anular});
@@ -178,7 +178,15 @@ namespace CapaPresentacion
             this.dataListado.Size = new System.Drawing.Size(1043, 524);
             this.dataListado.TabIndex = 9;
             this.dataListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListado_CellContentClick);
-            this.dataListado.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataListado_CellContentDoubleClick);
+            this.dataListado.DoubleClick += new System.EventHandler(this.dataListado_DoubleClick);
+            // 
+            // Anular
+            // 
+            this.Anular.HeaderText = "Anular";
+            this.Anular.MinimumWidth = 6;
+            this.Anular.Name = "Anular";
+            this.Anular.ReadOnly = true;
+            this.Anular.Width = 125;
             // 
             // lblTotal
             // 
@@ -245,7 +253,7 @@ namespace CapaPresentacion
             this.dtFechaProduccion.Location = new System.Drawing.Point(669, 21);
             this.dtFechaProduccion.Name = "dtFechaProduccion";
             this.dtFechaProduccion.Size = new System.Drawing.Size(122, 22);
-            this.dtFechaProduccion.TabIndex = 9;
+            this.dtFechaProduccion.TabIndex = 11;
             // 
             // cbTipo_Comprobante
             // 
@@ -259,7 +267,7 @@ namespace CapaPresentacion
             this.cbTipo_Comprobante.Location = new System.Drawing.Point(114, 71);
             this.cbTipo_Comprobante.Name = "cbTipo_Comprobante";
             this.cbTipo_Comprobante.Size = new System.Drawing.Size(146, 24);
-            this.cbTipo_Comprobante.TabIndex = 7;
+            this.cbTipo_Comprobante.TabIndex = 8;
             this.cbTipo_Comprobante.Text = "TICKET";
             // 
             // label12
@@ -268,7 +276,7 @@ namespace CapaPresentacion
             this.label12.Location = new System.Drawing.Point(538, 24);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(126, 17);
-            this.label12.TabIndex = 8;
+            this.label12.TabIndex = 10;
             this.label12.Text = "Fecha Producción:";
             // 
             // label11
@@ -277,7 +285,7 @@ namespace CapaPresentacion
             this.label11.Location = new System.Drawing.Point(11, 72);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(97, 17);
-            this.label11.TabIndex = 6;
+            this.label11.TabIndex = 7;
             this.label11.Text = "Comprobante:";
             // 
             // txtSerie
@@ -287,7 +295,7 @@ namespace CapaPresentacion
             this.txtSerie.Location = new System.Drawing.Point(368, 72);
             this.txtSerie.Name = "txtSerie";
             this.txtSerie.Size = new System.Drawing.Size(78, 22);
-            this.txtSerie.TabIndex = 5;
+            this.txtSerie.TabIndex = 10;
             // 
             // tabControl1
             // 
@@ -348,7 +356,7 @@ namespace CapaPresentacion
             this.lblTotalPagado.Location = new System.Drawing.Point(130, 539);
             this.lblTotalPagado.Name = "lblTotalPagado";
             this.lblTotalPagado.Size = new System.Drawing.Size(28, 17);
-            this.lblTotalPagado.TabIndex = 36;
+            this.lblTotalPagado.TabIndex = 17;
             this.lblTotalPagado.Text = "0.0";
             // 
             // txtIdProveedor
@@ -368,7 +376,7 @@ namespace CapaPresentacion
             this.label5.Location = new System.Drawing.Point(11, 539);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 17);
-            this.label5.TabIndex = 34;
+            this.label5.TabIndex = 16;
             this.label5.Text = "Total Pagado: $ ";
             // 
             // dataListadoDetalle
@@ -381,7 +389,7 @@ namespace CapaPresentacion
             this.dataListadoDetalle.RowHeadersWidth = 51;
             this.dataListadoDetalle.RowTemplate.Height = 24;
             this.dataListadoDetalle.Size = new System.Drawing.Size(1037, 284);
-            this.dataListadoDetalle.TabIndex = 33;
+            this.dataListadoDetalle.TabIndex = 15;
             // 
             // groupBox2
             // 
@@ -404,7 +412,7 @@ namespace CapaPresentacion
             this.groupBox2.Location = new System.Drawing.Point(8, 109);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1038, 115);
-            this.groupBox2.TabIndex = 32;
+            this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             // 
             // txtIdArticulo
@@ -415,7 +423,7 @@ namespace CapaPresentacion
             this.txtIdArticulo.Name = "txtIdArticulo";
             this.txtIdArticulo.ReadOnly = true;
             this.txtIdArticulo.Size = new System.Drawing.Size(46, 22);
-            this.txtIdArticulo.TabIndex = 36;
+            this.txtIdArticulo.TabIndex = 2;
             this.txtIdArticulo.Visible = false;
             // 
             // btnQuitar
@@ -424,9 +432,10 @@ namespace CapaPresentacion
             this.btnQuitar.Location = new System.Drawing.Point(812, 61);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(73, 45);
-            this.btnQuitar.TabIndex = 34;
+            this.btnQuitar.TabIndex = 15;
             this.btnQuitar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // dtFechaVencimiento
             // 
@@ -435,7 +444,7 @@ namespace CapaPresentacion
             this.dtFechaVencimiento.Location = new System.Drawing.Point(669, 72);
             this.dtFechaVencimiento.Name = "dtFechaVencimiento";
             this.dtFechaVencimiento.Size = new System.Drawing.Size(122, 22);
-            this.dtFechaVencimiento.TabIndex = 43;
+            this.dtFechaVencimiento.TabIndex = 13;
             // 
             // btnAgregar
             // 
@@ -443,9 +452,10 @@ namespace CapaPresentacion
             this.btnAgregar.Location = new System.Drawing.Point(812, 10);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(73, 45);
-            this.btnAgregar.TabIndex = 33;
+            this.btnAgregar.TabIndex = 14;
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // label20
             // 
@@ -453,7 +463,7 @@ namespace CapaPresentacion
             this.label20.Location = new System.Drawing.Point(538, 75);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(132, 17);
-            this.label20.TabIndex = 42;
+            this.label20.TabIndex = 12;
             this.label20.Text = "Fecha Vencimiento:";
             // 
             // label19
@@ -462,7 +472,7 @@ namespace CapaPresentacion
             this.label19.Location = new System.Drawing.Point(7, 75);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(86, 17);
-            this.label19.TabIndex = 40;
+            this.label19.TabIndex = 3;
             this.label19.Text = "Stock Inicial:";
             // 
             // txtStock
@@ -473,7 +483,7 @@ namespace CapaPresentacion
             this.txtStock.Name = "txtStock";
             this.txtStock.ReadOnly = true;
             this.txtStock.Size = new System.Drawing.Size(105, 22);
-            this.txtStock.TabIndex = 41;
+            this.txtStock.TabIndex = 4;
             // 
             // label18
             // 
@@ -481,7 +491,7 @@ namespace CapaPresentacion
             this.label18.Location = new System.Drawing.Point(308, 75);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(93, 17);
-            this.label18.TabIndex = 38;
+            this.label18.TabIndex = 8;
             this.label18.Text = "Precio Venta:";
             // 
             // txtPrecioVenta
@@ -492,7 +502,7 @@ namespace CapaPresentacion
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.ReadOnly = true;
             this.txtPrecioVenta.Size = new System.Drawing.Size(98, 22);
-            this.txtPrecioVenta.TabIndex = 39;
+            this.txtPrecioVenta.TabIndex = 9;
             // 
             // label17
             // 
@@ -500,7 +510,7 @@ namespace CapaPresentacion
             this.label17.Location = new System.Drawing.Point(308, 24);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(105, 17);
-            this.label17.TabIndex = 36;
+            this.label17.TabIndex = 6;
             this.label17.Text = "Precio Compra:";
             // 
             // txtPrecioCompra
@@ -511,7 +521,7 @@ namespace CapaPresentacion
             this.txtPrecioCompra.Name = "txtPrecioCompra";
             this.txtPrecioCompra.ReadOnly = true;
             this.txtPrecioCompra.Size = new System.Drawing.Size(98, 22);
-            this.txtPrecioCompra.TabIndex = 37;
+            this.txtPrecioCompra.TabIndex = 7;
             // 
             // btnBuscarArticulo
             // 
@@ -520,7 +530,7 @@ namespace CapaPresentacion
             this.btnBuscarArticulo.Location = new System.Drawing.Point(263, 17);
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
             this.btnBuscarArticulo.Size = new System.Drawing.Size(39, 34);
-            this.btnBuscarArticulo.TabIndex = 35;
+            this.btnBuscarArticulo.TabIndex = 5;
             this.btnBuscarArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscarArticulo.UseVisualStyleBackColor = true;
             this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click);
@@ -531,7 +541,7 @@ namespace CapaPresentacion
             this.label16.Location = new System.Drawing.Point(34, 24);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(59, 17);
-            this.label16.TabIndex = 33;
+            this.label16.TabIndex = 0;
             this.label16.Text = "Artículo:";
             // 
             // txtArticulo
@@ -542,7 +552,7 @@ namespace CapaPresentacion
             this.txtArticulo.Name = "txtArticulo";
             this.txtArticulo.ReadOnly = true;
             this.txtArticulo.Size = new System.Drawing.Size(158, 22);
-            this.txtArticulo.TabIndex = 34;
+            this.txtArticulo.TabIndex = 1;
             // 
             // txtIgv
             // 
@@ -551,7 +561,7 @@ namespace CapaPresentacion
             this.txtIgv.Location = new System.Drawing.Point(677, 72);
             this.txtIgv.Name = "txtIgv";
             this.txtIgv.Size = new System.Drawing.Size(78, 22);
-            this.txtIgv.TabIndex = 31;
+            this.txtIgv.TabIndex = 13;
             // 
             // label4
             // 
@@ -559,7 +569,7 @@ namespace CapaPresentacion
             this.label4.Location = new System.Drawing.Point(641, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 17);
-            this.label4.TabIndex = 30;
+            this.label4.TabIndex = 12;
             this.label4.Text = "Igv:";
             // 
             // txtCorrelativo
@@ -569,7 +579,7 @@ namespace CapaPresentacion
             this.txtCorrelativo.Location = new System.Drawing.Point(457, 71);
             this.txtCorrelativo.Name = "txtCorrelativo";
             this.txtCorrelativo.Size = new System.Drawing.Size(141, 22);
-            this.txtCorrelativo.TabIndex = 29;
+            this.txtCorrelativo.TabIndex = 11;
             // 
             // dtFecha
             // 
@@ -577,7 +587,7 @@ namespace CapaPresentacion
             this.dtFecha.Location = new System.Drawing.Point(884, 27);
             this.dtFecha.Name = "dtFecha";
             this.dtFecha.Size = new System.Drawing.Size(122, 22);
-            this.dtFecha.TabIndex = 28;
+            this.dtFecha.TabIndex = 6;
             // 
             // label15
             // 
@@ -585,7 +595,7 @@ namespace CapaPresentacion
             this.label15.Location = new System.Drawing.Point(827, 30);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(51, 17);
-            this.label15.TabIndex = 27;
+            this.label15.TabIndex = 5;
             this.label15.Text = "Fecha:";
             // 
             // btnBuscarProveedor
@@ -595,7 +605,7 @@ namespace CapaPresentacion
             this.btnBuscarProveedor.Location = new System.Drawing.Point(729, 21);
             this.btnBuscarProveedor.Name = "btnBuscarProveedor";
             this.btnBuscarProveedor.Size = new System.Drawing.Size(39, 34);
-            this.btnBuscarProveedor.TabIndex = 26;
+            this.btnBuscarProveedor.TabIndex = 4;
             this.btnBuscarProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscarProveedor.UseVisualStyleBackColor = true;
             this.btnBuscarProveedor.Click += new System.EventHandler(this.btnBuscarProveedor_Click);
@@ -608,7 +618,7 @@ namespace CapaPresentacion
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.ReadOnly = true;
             this.txtProveedor.Size = new System.Drawing.Size(383, 22);
-            this.txtProveedor.TabIndex = 25;
+            this.txtProveedor.TabIndex = 3;
             // 
             // label14
             // 
@@ -616,7 +626,7 @@ namespace CapaPresentacion
             this.label14.Location = new System.Drawing.Point(256, 30);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(78, 17);
-            this.label14.TabIndex = 24;
+            this.label14.TabIndex = 2;
             this.label14.Text = "Proveedor:";
             // 
             // label6
@@ -625,7 +635,7 @@ namespace CapaPresentacion
             this.label6.Location = new System.Drawing.Point(300, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 17);
-            this.label6.TabIndex = 4;
+            this.label6.TabIndex = 9;
             this.label6.Text = "Número:";
             // 
             // btnCancelar
@@ -635,7 +645,7 @@ namespace CapaPresentacion
             this.btnCancelar.Location = new System.Drawing.Point(941, 525);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(104, 45);
-            this.btnCancelar.TabIndex = 23;
+            this.btnCancelar.TabIndex = 20;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -648,7 +658,7 @@ namespace CapaPresentacion
             this.btnGuardar.Location = new System.Drawing.Point(831, 525);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(104, 45);
-            this.btnGuardar.TabIndex = 21;
+            this.btnGuardar.TabIndex = 19;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -661,7 +671,7 @@ namespace CapaPresentacion
             this.btnNuevo.Location = new System.Drawing.Point(721, 525);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(104, 45);
-            this.btnNuevo.TabIndex = 20;
+            this.btnNuevo.TabIndex = 18;
             this.btnNuevo.Text = "&Nuevo";
             this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -704,20 +714,12 @@ namespace CapaPresentacion
             this.label1.Location = new System.Drawing.Point(85, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(179, 40);
-            this.label1.TabIndex = 10;
+            this.label1.TabIndex = 0;
             this.label1.Text = "INGRESOS";
             // 
             // ttMensaje
             // 
             this.ttMensaje.IsBalloon = true;
-            // 
-            // Anular
-            // 
-            this.Anular.HeaderText = "Anular";
-            this.Anular.MinimumWidth = 6;
-            this.Anular.Name = "Anular";
-            this.Anular.ReadOnly = true;
-            this.Anular.Width = 125;
             // 
             // frmIngreso
             // 

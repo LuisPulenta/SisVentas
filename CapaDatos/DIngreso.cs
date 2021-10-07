@@ -71,6 +71,7 @@ namespace CapaDatos
                 //Establecer el Comando
                 SqlCommand SqlCmd = new SqlCommand();
                 SqlCmd.Connection = SqlCon;
+                SqlCmd.Transaction = SqlTra;
                 SqlCmd.CommandText = "spingreso_insertar";
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
@@ -117,7 +118,7 @@ namespace CapaDatos
                 ParCorrelativo.ParameterName = "@correlativo";
                 ParCorrelativo.SqlDbType = SqlDbType.VarChar;
                 ParCorrelativo.Size = 7;
-                ParCorrelativo.Value = Ingreso.Tipo_comprobante;
+                ParCorrelativo.Value = Ingreso.Correlativo;
                 SqlCmd.Parameters.Add(ParCorrelativo);
 
                 SqlParameter Parigv = new SqlParameter();

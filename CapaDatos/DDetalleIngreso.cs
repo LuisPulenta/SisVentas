@@ -59,7 +59,8 @@ namespace CapaDatos
             string rpta = "";
             try
             {
-                 //Establecer el Comando
+                //Establecer el Comando
+
                 SqlCommand SqlCmd = new SqlCommand();
                 SqlCmd.Connection = SqlCon;
                 SqlCmd.Transaction = SqlTra;
@@ -67,7 +68,7 @@ namespace CapaDatos
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter ParIddetalleingreso = new SqlParameter();
-                ParIddetalleingreso.ParameterName = "@@iddetalle_ingreso";
+                ParIddetalleingreso.ParameterName = "@iddetalle_ingreso";
                 ParIddetalleingreso.SqlDbType = SqlDbType.Int;
                 ParIddetalleingreso.Direction = ParameterDirection.Output;
                 SqlCmd.Parameters.Add(ParIddetalleingreso);

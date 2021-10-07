@@ -79,7 +79,6 @@ namespace CapaPresentacion
         //Habilitar controles del formulario
         private void Habilitar(bool valor)
         {
-            txtProveedor.ReadOnly = !valor;
             txtSerie.ReadOnly = !valor;
             txtCorrelativo.ReadOnly = !valor;
             txtIgv.ReadOnly = !valor;
@@ -90,6 +89,7 @@ namespace CapaPresentacion
             txtPrecioVenta.ReadOnly = !valor;
             dtFechaProduccion.Enabled = valor;
             dtFechaVencimiento.Enabled = valor;
+            
             btnBuscarArticulo.Enabled = valor;
             btnBuscarProveedor.Enabled = valor;
             btnAgregar.Enabled = valor;
@@ -141,7 +141,7 @@ namespace CapaPresentacion
         //Método MostrarDetalle
         private void MostrarDetalle()
         {
-            dataListadoDetalle.DataSource = NIngreso.BuscarDetalle(txtIdIngreso.Text);
+            dataListadoDetalle.DataSource = NIngreso.MostrarDetalle(txtIdIngreso.Text);
         }
 
         private void crearTabla()
@@ -152,22 +152,70 @@ namespace CapaPresentacion
             dtDetalle.Columns.Add("precio_compra", System.Type.GetType("System.Decimal"));
             dtDetalle.Columns.Add("precio_venta", System.Type.GetType("System.Decimal"));
             dtDetalle.Columns.Add("stock_inicial", System.Type.GetType("System.Int32"));
+            dtDetalle.Columns.Add("stock_actual", System.Type.GetType("System.Int32"));
             dtDetalle.Columns.Add("fecha_produccion", System.Type.GetType("System.DateTime"));
             dtDetalle.Columns.Add("fecha_vencimiento", System.Type.GetType("System.DateTime"));
             dtDetalle.Columns.Add("subtotal", System.Type.GetType("System.Decimal"));
             //Realacionar nuestri DataGRidView con nuesto DataTable
-            dataListado.DataSource = dtDetalle;
+            dataListadoDetalle.DataSource = dtDetalle;
+            PersonalizarGrillaDetalle();
         }
 
         private void PersonalizarGrilla()
         {
-            dataListado.Columns["nombre"].HeaderText = "Nombre";
-            dataListado.Columns["nombre"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataListado.Columns["idingreso"].HeaderText = "Id";
+            dataListado.Columns["idingreso"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            dataListado.Columns["descripcion"].HeaderText = "Descripción";
-            dataListado.Columns["descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataListado.Columns["fecha"].HeaderText = "Fecha";
+            dataListado.Columns["fecha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["tipo_comprobante"].HeaderText = "Tipo Comprobante";
+            dataListado.Columns["tipo_comprobante"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["serie"].HeaderText = "Serie";
+            dataListado.Columns["serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["correlativo"].HeaderText = "Correlativo";
+            dataListado.Columns["correlativo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["igv"].HeaderText = "Igv";
+            dataListado.Columns["igv"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dataListado.Columns["estado"].HeaderText = "Estado";
+            dataListado.Columns["estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             dataListado.AutoResizeColumns();
+        }
+
+        private void PersonalizarGrillaDetalle()
+        {
+           
+                dataListadoDetalle.Columns["idarticulo"].HeaderText = "Id Artículo";
+                dataListadoDetalle.Columns["idarticulo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["articulo"].HeaderText = "Artículo";
+                dataListadoDetalle.Columns["articulo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["precio_compra"].HeaderText = "Precio Compra";
+                dataListadoDetalle.Columns["precio_compra"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["precio_venta"].HeaderText = "Precio Venta";
+                dataListadoDetalle.Columns["precio_venta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["stock_inicial"].HeaderText = "Stock inicial";
+                dataListadoDetalle.Columns["stock_inicial"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["fecha_produccion"].HeaderText = "Fecha Producción";
+                dataListadoDetalle.Columns["fecha_produccion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["fecha_vencimiento"].HeaderText = "Fecha Vencimiento";
+                dataListadoDetalle.Columns["fecha_vencimiento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.Columns["subtotal"].HeaderText = "Subtotal";
+                dataListadoDetalle.Columns["subtotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                dataListadoDetalle.AutoResizeColumns();
+            
         }
 
         private void frmIngreso_Load(object sender, EventArgs e)
@@ -177,6 +225,8 @@ namespace CapaPresentacion
             Habilitar(false);
             Botones();
             crearTabla();
+            PersonalizarGrilla();
+            PersonalizarGrillaDetalle();
         }
 
         public void setProveedor(string idproveedor, string nombre)
@@ -211,11 +261,6 @@ namespace CapaPresentacion
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             BuscarFecha();
-        }
-
-        private void dataListado_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnAnular_Click(object sender, EventArgs e)
@@ -273,8 +318,8 @@ namespace CapaPresentacion
         {
             if (e.ColumnIndex == dataListado.Columns["Anular"].Index)
             {
-                DataGridViewCheckBoxCell ChkEliminar = (DataGridViewCheckBoxCell)dataListado.Rows[e.RowIndex].Cells["Eliminar"];
-                ChkEliminar.Value = !Convert.ToBoolean(ChkEliminar.Value);
+                DataGridViewCheckBoxCell ChkAnular = (DataGridViewCheckBoxCell)dataListado.Rows[e.RowIndex].Cells["Anular"];
+                ChkAnular.Value = !Convert.ToBoolean(ChkAnular.Value);
             }
         }
 
@@ -284,7 +329,9 @@ namespace CapaPresentacion
             IsEditar = false;
             Botones();
             Limpiar();
+            LimpiarDetalle();
             Habilitar(true);
+            PersonalizarGrillaDetalle();
             txtSerie.Focus();
         }
 
@@ -294,8 +341,9 @@ namespace CapaPresentacion
             IsEditar = false;
             Botones();
             Limpiar();
+            LimpiarDetalle();
             Mostrar();
-            PersonalizarGrilla();
+            PersonalizarGrillaDetalle();
             Habilitar(false);
         }
 
@@ -332,27 +380,19 @@ namespace CapaPresentacion
                         Idtrabajador,
                         Convert.ToInt32(txtIdProveedor.Text),
                         dtFecha.Value,
-                        cbTipo_Comprobante.SelectedValue.ToString(),
+                        cbTipo_Comprobante.Text,
                         txtSerie.Text,
                         txtCorrelativo.Text,
                         Convert.ToDecimal(txtIgv.Text),
-                        "ACTIVO",
-                        dtDetalles)
-                        ;
+                        "EMITIDO",
+                        dtDetalle);
                 }
-                else
-                {
-                    rpta = NIngreso.Editar(Convert.ToInt32(txtIdCategoria.Text), txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text);
-                }
+
                 if (rpta.Equals("OK"))
                 {
                     if (IsNuevo)
                     {
                         MensajeOk("El Registro se guardó con éxito!");
-                    }
-                    else
-                    {
-                        MensajeOk("El Registro se actualizó con éxito!");
                     }
                 }
                 else
@@ -361,17 +401,125 @@ namespace CapaPresentacion
                 }
 
                 IsNuevo = false;
-                IsEditar = false;
                 Botones();
                 Limpiar();
+                LimpiarDetalle();
                 Mostrar();
                 PersonalizarGrilla();
+                PersonalizarGrillaDetalle();
                 Habilitar(false);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                errorIcono.Clear();
+                if (txtIdArticulo.Text == string.Empty)
+                {
+                    MensajeError("Debe ingresar un Artículo");
+                    errorIcono.SetError(txtProveedor, "Debe ingresar un Artículo");
+                    return;
+                }
+
+                if (txtPrecioCompra.Text == string.Empty)
+                {
+                    MensajeError("Debe ingresar un Precio de Compra");
+                    errorIcono.SetError(txtPrecioCompra, "Debe ingresar un Precio de Compra");
+                    return;
+                }
+
+                if (txtPrecioVenta.Text == string.Empty)
+                {
+                    MensajeError("Debe ingresar un Precio de Venta");
+                    errorIcono.SetError(txtPrecioVenta, "Debe ingresar un Precio de Venta");
+                    return;
+                }
+
+                if (txtStock.Text == string.Empty)
+                {
+                    MensajeError("Debe ingresar una Cantidad a comprar");
+                    errorIcono.SetError(txtStock, "Debe ingresar Cantidad a comprar");
+                    return;
+                }
+
+                bool registrar = true;
+                foreach(DataRow row in dtDetalle.Rows)
+                {
+                    if(Convert.ToInt32(row["idarticulo"])==Convert.ToInt32(txtIdArticulo.Text))
+                    {
+                        registrar = false;
+                        MensajeError("Ya se encuentra el artículo en el detalle");
+                    }
+                }
+                if(registrar)
+                {
+                    decimal subTotal = Convert.ToDecimal(txtStock.Text) * Convert.ToDecimal(txtPrecioCompra.Text);
+                    totalPagado = totalPagado + subTotal;
+                    lblTotalPagado.Text = totalPagado.ToString("#0.00#");
+                    //Agregar ese detalle al datalistadoDetalle
+                    DataRow row = dtDetalle.NewRow();
+                    row["idarticulo"] = Convert.ToInt32(txtIdArticulo.Text);
+                    row["articulo"] = txtArticulo.Text;
+                    row["precio_compra"] = Convert.ToDecimal(txtPrecioCompra.Text);
+                    row["precio_venta"] = Convert.ToDecimal(txtPrecioVenta.Text);
+                    row["stock_inicial"] = Convert.ToInt32(txtStock.Text);
+                    row["stock_actual"] = Convert.ToInt32(txtStock.Text);
+                    row["fecha_produccion"] = dtFechaProduccion.Value;
+                    row["fecha_vencimiento"] = dtFechaVencimiento.Value;
+                    row["subtotal"] = subTotal;
+                    dtDetalle.Rows.Add(row);
+                    PersonalizarGrillaDetalle();
+                    LimpiarDetalle();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(dataListadoDetalle.Rows.Count==0)
+                {
+                    return;
+                }
+
+                int indiceFila = dataListadoDetalle.CurrentCell.RowIndex;
+                DataRow row = dtDetalle.Rows[indiceFila];
+                //Disminuir el total pagado
+                totalPagado = totalPagado - Convert.ToDecimal(row["subtotal".ToString()]);
+                lblTotalPagado.Text = totalPagado.ToString("#0.00#");
+                //Borramos la fila
+                dtDetalle.Rows.Remove(row);
+            }
+            catch (Exception ex)
+            {
+                MensajeError("No hay fila para borrar");
+                throw;
+            }
+        }
+
+        private void dataListado_DoubleClick(object sender, EventArgs e)
+        {
+            txtIdIngreso.Text = dataListado.CurrentRow.Cells["idingreso"].Value.ToString();
+            txtProveedor.Text = dataListado.CurrentRow.Cells["proveedor"].Value.ToString();
+            dtFecha.Value = Convert.ToDateTime(dataListado.CurrentRow.Cells["fecha"].Value);
+            cbTipo_Comprobante.Text = dataListado.CurrentRow.Cells["tipo_comprobante"].Value.ToString();
+            txtSerie.Text = dataListado.CurrentRow.Cells["serie"].Value.ToString();
+            txtCorrelativo.Text = dataListado.CurrentRow.Cells["correlativo"].Value.ToString();
+            lblTotalPagado.Text = dataListado.CurrentRow.Cells["total"].Value.ToString();
+            MostrarDetalle();
+            tabControl1.SelectedIndex = 1;
         }
     }
 }
