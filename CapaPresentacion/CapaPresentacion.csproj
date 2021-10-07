@@ -97,17 +97,35 @@
     <Compile Include="frmTrabajador.Designer.cs">
       <DependentUpon>frmTrabajador.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVenta.Designer.cs">
+      <DependentUpon>frmVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVistaArticulo_Ingreso.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmVistaArticulo_Ingreso.Designer.cs">
       <DependentUpon>frmVistaArticulo_Ingreso.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVistaArticulo_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVistaArticulo_Venta.Designer.cs">
+      <DependentUpon>frmVistaArticulo_Venta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVistaCategoria_Articulo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmVistaCategoria_Articulo.Designer.cs">
       <DependentUpon>frmVistaCategoria_Articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVistaCliente_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVistaCliente_Venta.Designer.cs">
+      <DependentUpon>frmVistaCliente_Venta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVistaProveedor_Ingreso.cs">
       <SubType>Form</SubType>
@@ -156,11 +174,20 @@
     <EmbeddedResource Include="frmTrabajador.resx">
       <DependentUpon>frmTrabajador.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVenta.resx">
+      <DependentUpon>frmVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVistaArticulo_Ingreso.resx">
       <DependentUpon>frmVistaArticulo_Ingreso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmVistaArticulo_Venta.resx">
+      <DependentUpon>frmVistaArticulo_Venta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVistaCategoria_Articulo.resx">
       <DependentUpon>frmVistaCategoria_Articulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVistaCliente_Venta.resx">
+      <DependentUpon>frmVistaCliente_Venta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVistaProveedor_Ingreso.resx">
       <DependentUpon>frmVistaProveedor_Ingreso.cs</DependentUpon>

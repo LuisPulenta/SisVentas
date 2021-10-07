@@ -244,5 +244,18 @@ namespace CapaPresentacion
         {
             salirToolStripMenuItem_Click(sender, e);
         }
+
+        private void ventasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmVenta frm = frmVenta.GetInstancia();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.Idtrabajador = Convert.ToInt32(Idtrabajador);
+        }
+
+        private void tsVentas_Click(object sender, EventArgs e)
+        {
+            ventasToolStripMenuItem1_Click(sender, e);
+        }
     }
 }

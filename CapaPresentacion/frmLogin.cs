@@ -19,7 +19,8 @@ namespace CapaPresentacion
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            txtUsuario.Text = "LNUNEZ";
+            txtPassword.Text = "123456";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
