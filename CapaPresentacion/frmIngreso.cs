@@ -36,8 +36,8 @@ namespace CapaPresentacion
             ttMensaje.SetToolTip(txtArticulo, "Seleccione el Artículo");
             txtIdProveedor.Visible = false;
             txtIdArticulo.Visible = false;
-            txtIdProveedor.ReadOnly = true;
-            txtIdArticulo.ReadOnly = true;
+            txtProveedor.ReadOnly = true;
+            txtArticulo.ReadOnly = true;
         }
 
         //Mostrar Mensaje de Confirmación
@@ -423,7 +423,7 @@ namespace CapaPresentacion
                 if (txtIdArticulo.Text == string.Empty)
                 {
                     MensajeError("Debe ingresar un Artículo");
-                    errorIcono.SetError(txtProveedor, "Debe ingresar un Artículo");
+                    errorIcono.SetError(txtIdArticulo, "Debe ingresar un Artículo");
                     return;
                 }
 
