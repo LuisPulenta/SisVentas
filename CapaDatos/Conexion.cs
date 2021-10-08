@@ -2,6 +2,6 @@
 {
     public class Conexion
     {
-        public static string Cn = "Data Source=LUISN\\SQLEXPRESS; Initial Catalog=dbVentas; Integrated Security=true";
+        public static string Cn = Properties.Settings.Default.cn ;
     }
 }
