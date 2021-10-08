@@ -424,5 +424,11 @@ namespace CapaPresentacion
         {
             _Instancia = null;
         }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            frmReporteArticulos form = new frmReporteArticulos();
+            form.ShowDialog();
+        }
     }
 }

@@ -433,7 +433,7 @@ namespace CapaPresentacion
             this.ingresosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresosToolStripMenuItem.Image")));
             this.ingresosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ingresosToolStripMenuItem.Name = "ingresosToolStripMenuItem";
-            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(236, 38);
+            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(186, 38);
             this.ingresosToolStripMenuItem.Text = "&Ingresos";
             this.ingresosToolStripMenuItem.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click);
             // 
@@ -442,7 +442,7 @@ namespace CapaPresentacion
             this.proveedoresToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("proveedoresToolStripMenuItem.Image")));
             this.proveedoresToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(236, 38);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(186, 38);
             this.proveedoresToolStripMenuItem.Text = "&Proveedores";
             this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
@@ -462,7 +462,7 @@ namespace CapaPresentacion
             this.ventasToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ventasToolStripMenuItem1.Image")));
             this.ventasToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ventasToolStripMenuItem1.Name = "ventasToolStripMenuItem1";
-            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(236, 38);
+            this.ventasToolStripMenuItem1.Size = new System.Drawing.Size(156, 38);
             this.ventasToolStripMenuItem1.Text = "&Ventas";
             this.ventasToolStripMenuItem1.Click += new System.EventHandler(this.ventasToolStripMenuItem1_Click);
             // 
@@ -471,7 +471,7 @@ namespace CapaPresentacion
             this.clientesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clientesToolStripMenuItem.Image")));
             this.clientesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(236, 38);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(156, 38);
             this.clientesToolStripMenuItem.Text = "&Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -510,7 +510,7 @@ namespace CapaPresentacion
             this.ventasPorFechaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ventasPorFechaToolStripMenuItem.Image")));
             this.ventasPorFechaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ventasPorFechaToolStripMenuItem.Name = "ventasPorFechaToolStripMenuItem";
-            this.ventasPorFechaToolStripMenuItem.Size = new System.Drawing.Size(232, 38);
+            this.ventasPorFechaToolStripMenuItem.Size = new System.Drawing.Size(236, 38);
             this.ventasPorFechaToolStripMenuItem.Text = "&Ventas por Fecha";
             // 
             // comprasPorFechaToolStripMenuItem
@@ -518,7 +518,7 @@ namespace CapaPresentacion
             this.comprasPorFechaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("comprasPorFechaToolStripMenuItem.Image")));
             this.comprasPorFechaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.comprasPorFechaToolStripMenuItem.Name = "comprasPorFechaToolStripMenuItem";
-            this.comprasPorFechaToolStripMenuItem.Size = new System.Drawing.Size(232, 38);
+            this.comprasPorFechaToolStripMenuItem.Size = new System.Drawing.Size(236, 38);
             this.comprasPorFechaToolStripMenuItem.Text = "&Compras por Fecha";
             // 
             // stockDeArtículosToolStripMenuItem
@@ -526,8 +526,9 @@ namespace CapaPresentacion
             this.stockDeArtículosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("stockDeArtículosToolStripMenuItem.Image")));
             this.stockDeArtículosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.stockDeArtículosToolStripMenuItem.Name = "stockDeArtículosToolStripMenuItem";
-            this.stockDeArtículosToolStripMenuItem.Size = new System.Drawing.Size(232, 38);
+            this.stockDeArtículosToolStripMenuItem.Size = new System.Drawing.Size(236, 38);
             this.stockDeArtículosToolStripMenuItem.Text = "&Stock de Artículos";
+            this.stockDeArtículosToolStripMenuItem.Click += new System.EventHandler(this.stockDeArtículosToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 

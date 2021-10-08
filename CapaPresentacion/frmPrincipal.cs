@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaPresentacion.Consultas;
+using System;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -256,6 +257,13 @@ namespace CapaPresentacion
         private void tsVentas_Click(object sender, EventArgs e)
         {
             ventasToolStripMenuItem1_Click(sender, e);
+        }
+
+        private void stockDeArtículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsulta_Stock_Articulos frm = new frmConsulta_Stock_Articulos();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

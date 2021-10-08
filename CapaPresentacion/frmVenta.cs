@@ -518,5 +518,12 @@ namespace CapaPresentacion
                 dataListado.Columns[0].Visible = false;
             }
         }
+
+        private void btnComprobante_Click(object sender, EventArgs e)
+        {
+            frmReporteFactura frm = new frmReporteFactura();
+            frm.IdVenta = Convert.ToInt32(dataListado.CurrentRow.Cells["idventa"].Value);
+            frm.ShowDialog();
+        }
     }
 }
